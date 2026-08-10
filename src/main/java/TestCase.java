@@ -20,6 +20,6 @@ public class TestCase {
                 .statusCode(200)
                 .body("userId", equalTo(1))
                         .assertThat().body("id",equalTo(1));
-        System.out.println("Request Executed");
+        System.out.println("Request Executed Successfully. Thanks");
     }
 }
