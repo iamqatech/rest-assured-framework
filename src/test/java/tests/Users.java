@@ -3,14 +3,14 @@ package tests;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
+import utilities.Helper;
 import utilities.SchemaPath;
 
 import static io.restassured.RestAssured.given;
-import static utilities.Helper.getProperty;
 
 public class Users {
 
-    public static String baseUrl = getProperty("baseUrl");
+    public String baseUrl = Helper.getProperty("baseUrl");
 
     @Test(priority = 2)
     public void getUser() {
@@ -29,7 +29,6 @@ public class Users {
                 .header("Content-Type", "application/json")
                 .when().get("/Users")
                 .then()
-                .log().body()
                 .statusCode(HttpStatus.SC_OK)
                 .assertThat().body(JsonSchemaValidator.matchesJsonSchemaInClasspath(SchemaPath.USERS_SCHEMA.getPath()));
 
