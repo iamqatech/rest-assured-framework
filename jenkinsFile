@@ -30,13 +30,13 @@ pipeline {
 success {
         mail(
             to: 'tech.prashants@gmail.com',
-            subject: "[${params.ENV}] API Automation - SUCCESS - Build #${env.BUILD_NUMBER}",
+            subject: "API Automation - SUCCESS - Build #${env.BUILD_NUMBER}",
             body: """
 API Automation Execution Successful
 
 Job        : ${env.JOB_NAME}
 Build      : #${env.BUILD_NUMBER}
-Environment: ${params.ENV}
+Environment: TEST
 Status     : SUCCESS
 
 Jenkins Build:
@@ -48,13 +48,13 @@ ${env.BUILD_URL}
     failure {
         mail(
             to: 'tech.prashants@gmail.com',
-            subject: "[${params.ENV}] API Automation - FAILED - Build #${env.BUILD_NUMBER}",
+            subject: "API Automation - FAILED - Build #${env.BUILD_NUMBER}",
             body: """
 API Automation Execution FAILED
 
 Job        : ${env.JOB_NAME}
 Build      : #${env.BUILD_NUMBER}
-Environment: ${params.ENV}
+Environment: TEST
 Status     : FAILED
 
 Please check the Jenkins console and test reports.
