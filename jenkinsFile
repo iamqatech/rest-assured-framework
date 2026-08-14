@@ -29,12 +29,42 @@ pipeline {
 		
 
         success {
-            echo 'API Tests PASSED'
-        }
+        emailext(
+            to: 'tech.prashants@gmail.com',
+            subject: "[${params.ENV}] API Automation PASSED - Build #${env.BUILD_NUMBER}",
+            body: """
+API Automation Test Execution PASSED
 
-        failure {
-            echo 'API Tests FAILED'
-        }
+Job         : ${env.JOB_NAME}
+Build       : #${env.BUILD_NUMBER}
+Environment : ${params.ENV}
+Status      : PASSED
+
+Check Jenkins for details:
+${env.BUILD_URL}
+""",
+            attachmentsPattern: 'target/surefire-reports/*.xml'
+        )
+    }
+	
+failure {
+        emailext(
+            to: 'tech.prashants@gmail.com',
+            subject: "[${params.ENV}] API Automation FAILED - Build #${env.BUILD_NUMBER}",
+            body: """
+API Automation Test Execution Failed
+
+Job         : ${env.JOB_NAME}
+Build       : #${env.BUILD_NUMBER}
+Environment : ${params.ENV}
+Status      : FAILED
+
+Check Jenkins for details:
+${env.BUILD_URL}
+""",
+            attachmentsPattern: 'target/surefire-reports/*.xml'
+        )
+    }
 		
     }
 }
