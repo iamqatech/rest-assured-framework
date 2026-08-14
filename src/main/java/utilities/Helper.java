@@ -9,7 +9,7 @@ public class Helper {
     public static String getProperty(String propName) {
         try {
             Properties prop = new Properties();
-            prop.load(new FileReader("src//main//resources//testconfig.properties"));
+            prop.load(new FileReader("src//main//resources//testconfig-QA.properties"));
             return prop.getProperty(propName);
 
         } catch (IOException e) {
