@@ -29,7 +29,7 @@ pipeline {
 		
 success {
         mail(
-            to: 'your-email@example.com',
+            to: 'tech.prashants@gmail.com',
             subject: "[${params.ENV}] API Automation - SUCCESS - Build #${env.BUILD_NUMBER}",
             body: """
 API Automation Execution Successful
@@ -47,7 +47,7 @@ ${env.BUILD_URL}
 
     failure {
         mail(
-            to: 'your-email@example.com',
+            to: 'tech.prashants@gmail.com',
             subject: "[${params.ENV}] API Automation - FAILED - Build #${env.BUILD_NUMBER}",
             body: """
 API Automation Execution FAILED
