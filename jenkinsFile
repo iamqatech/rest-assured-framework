@@ -27,44 +27,41 @@ pipeline {
 			junit 'target/surefire-reports/*.xml'
         }
 		
-
-        success {
-        emailext(
-            to: 'tech.prashants@gmail.com',
-            subject: "[${params.ENV}] API Automation PASSED - Build #${env.BUILD_NUMBER}",
+success {
+        mail(
+            to: 'your-email@example.com',
+            subject: "[${params.ENV}] API Automation - SUCCESS - Build #${env.BUILD_NUMBER}",
             body: """
-API Automation Test Execution PASSED
+API Automation Execution Successful
 
-Job         : ${env.JOB_NAME}
-Build       : #${env.BUILD_NUMBER}
-Environment : ${params.ENV}
-Status      : PASSED
+Job        : ${env.JOB_NAME}
+Build      : #${env.BUILD_NUMBER}
+Environment: ${params.ENV}
+Status     : SUCCESS
 
-Check Jenkins for details:
+Jenkins Build:
 ${env.BUILD_URL}
-""",
-            attachmentsPattern: 'target/surefire-reports/*.xml'
+"""
         )
     }
-	
-failure {
-        emailext(
-            to: 'tech.prashants@gmail.com',
-            subject: "[${params.ENV}] API Automation FAILED - Build #${env.BUILD_NUMBER}",
+
+    failure {
+        mail(
+            to: 'your-email@example.com',
+            subject: "[${params.ENV}] API Automation - FAILED - Build #${env.BUILD_NUMBER}",
             body: """
-API Automation Test Execution Failed
+API Automation Execution FAILED
 
-Job         : ${env.JOB_NAME}
-Build       : #${env.BUILD_NUMBER}
-Environment : ${params.ENV}
-Status      : FAILED
+Job        : ${env.JOB_NAME}
+Build      : #${env.BUILD_NUMBER}
+Environment: ${params.ENV}
+Status     : FAILED
 
-Check Jenkins for details:
+Please check the Jenkins console and test reports.
+
+Jenkins Build:
 ${env.BUILD_URL}
-""",
-            attachmentsPattern: 'target/surefire-reports/*.xml'
+"""
         )
     }
-		
-    }
-}
+}}
