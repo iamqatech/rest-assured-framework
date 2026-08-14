@@ -22,7 +22,7 @@ pipeline {
 		
 		stage('Check Agent'){
 		steps {sh 'sname -a'}
-    }
+    }}
 
     post {
         always {
