@@ -25,6 +25,7 @@ pipeline {
         always {
             echo 'Test execution completed'
         }
+		
 
         success {
             echo 'API Tests PASSED'
@@ -33,5 +34,9 @@ pipeline {
         failure {
             echo 'API Tests FAILED'
         }
+		
+		always {
+        junit 'target/surefire-reports/*.xml'
+    }
     }
 }
