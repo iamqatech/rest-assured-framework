@@ -16,9 +16,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean test "-DsuiteXmlFile=testng.xml"'
+                sh 'mvn clean test "-DsuiteXmlFile=testng.xml"'
             }
         }
+		
+		stage('Check Agent'){
+		steps {sh 'sname -a'}
     }
 
     post {
