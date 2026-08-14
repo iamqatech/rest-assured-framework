@@ -19,10 +19,7 @@ pipeline {
                 sh 'mvn clean test "-DsuiteXmlFile=testng.xml"'
             }
         }
-		
-		stage('Check Agent'){
-		steps {sh 'sname -a'}
-    }}
+		}
 
     post {
         always {
