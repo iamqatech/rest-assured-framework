@@ -24,14 +24,44 @@ pipeline {
     post {
         always {
             echo 'Test execution completed'
+			junit 'target/surefire-reports/*.xml'
         }
+		
+success {
+        mail(
+            to: 'tech.prashants@gmail.com',
+            subject: "API Automation - SUCCESS - Build #${env.BUILD_NUMBER}",
+            body: """
+API Automation Execution Successful
 
-        success {
-            echo 'API Tests PASSED'
-        }
+Job        : ${env.JOB_NAME}
+Build      : #${env.BUILD_NUMBER}
+Environment: TEST
+Status     : SUCCESS
 
-        failure {
-            echo 'API Tests FAILED'
-        }
+Jenkins Build:
+${env.BUILD_URL}
+"""
+        )
     }
-}
+
+    failure {
+        mail(
+            to: 'tech.prashants@gmail.com',
+            subject: "API Automation - FAILED - Build #${env.BUILD_NUMBER}",
+            body: """
+API Automation Execution FAILED
+
+Job        : ${env.JOB_NAME}
+Build      : #${env.BUILD_NUMBER}
+Environment: TEST
+Status     : FAILED
+
+Please check the Jenkins console and test reports.
+
+Jenkins Build:
+${env.BUILD_URL}
+"""
+        )
+    }
+}}
