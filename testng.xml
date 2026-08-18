@@ -2,14 +2,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="RESTAPI Testing">
     <test verbose="2" preserve-order="true" name="Products">
-        <classes>
-            <class name="tests.products.GetProductsTest">
+        <packages>
+            <package name="tests.products">
                 <!--methods><include name="getUsersById"/><include name="getUsers"/></methods-->
-            </class>
+            </package>
 
-        </classes>
+        </packages>
     </test>
     <test name="Users" preserve-order="true" verbose="2" parallel="classes">
-        <classes><class name="tests.users.GetUsersTest"></class></classes>
+        <packages><package name="tests.users"></package></packages>
     </test>
 </suite>
