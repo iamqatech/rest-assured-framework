@@ -19,7 +19,14 @@ pipeline {
                 sh 'mvn clean test "-DsuiteXmlFile=testng.xml"'
             }
         }
-		}
+
+stage('Allure Report') {
+steps {
+allure([
+includeProperties: false,
+results: [[path: 'target/allure-results']]
+])}}
+
 
     post {
         always {

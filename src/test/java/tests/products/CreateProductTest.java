@@ -1,23 +1,19 @@
 package tests.products;
 
 import api.products.ProductsApi;
+import api.users.UsersApi;
 import io.restassured.response.Response;
 import model.Product;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import tests.BaseTest;
+import tools.jackson.core.ObjectReadContext;
 import utilities.AllureManager;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class CreateProductTest {
-
-    private ProductsApi products;
-
-    @BeforeClass
-    public void initializeTest() {
-        products = new ProductsApi();
-    }
+public class CreateProductTest extends BaseTest {
 
     @Test
     public void verifyCreateProduct() {

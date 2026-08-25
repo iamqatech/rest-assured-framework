@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="RESTAPI Testing">
-    <test verbose="2" preserve-order="true" name="Products">
+    <test verbose="2" preserve-order="true" name="Fakestore Testing">
         <packages>
-            <package name="tests.products">
+            <package name="tests.*">
                 <!--methods><include name="getUsersById"/><include name="getUsers"/></methods-->
             </package>
 
-        </packages>
-    </test>
-    <test name="Users" preserve-order="true" verbose="2" parallel="classes">
-        <packages><package name="tests.users"></package></packages>
-    </test>
+        </packages></test>
 </suite>

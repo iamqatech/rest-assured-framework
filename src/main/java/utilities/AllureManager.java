@@ -10,4 +10,8 @@ public class AllureManager {
                 response.asPrettyString(),".json");
     }
 
+    public static void logAllure(String statement){
+        Allure.step(statement);
+    }
+
 }
