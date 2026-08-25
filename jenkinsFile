@@ -25,7 +25,7 @@ steps {
 allure([
 includeProperties: false,
 results: [[path: 'target/allure-results']]
-])}}
+])}}}
 
 
     post {
@@ -33,7 +33,7 @@ results: [[path: 'target/allure-results']]
             echo 'Test execution completed'
 			junit 'target/surefire-reports/*.xml'
         }
-		
+
 success {
         mail(
             to: 'tech.prashants@gmail.com',
