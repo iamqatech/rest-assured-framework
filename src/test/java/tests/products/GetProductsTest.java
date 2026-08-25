@@ -1,24 +1,17 @@
 package tests.products;
 
 import api.products.ProductsApi;
+import api.users.UsersApi;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import tests.BaseTest;
 import utilities.AllureManager;
 import utilities.SchemaPath;
 
-public class GetProductsTest {
-
-    public ProductsApi products;
-
-    @BeforeClass
-    public void initializeTest() {
-
-        products = new ProductsApi();
-
-    }
+public class GetProductsTest extends BaseTest {
 
     @Test(priority = 2)
     public void verifyGetProductById() {

@@ -1,24 +1,17 @@
 package tests.users;
 
+import api.products.ProductsApi;
 import api.users.UsersApi;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import tests.BaseTest;
 import utilities.AllureManager;
 import utilities.SchemaPath;
 
-public class GetUsersTest {
-
-    public UsersApi users;
-
-    @BeforeClass
-    public void initializeTest() {
-
-        users = new UsersApi();
-
-    }
+public class GetUsersTest extends BaseTest {
 
     @Test(priority = 2)
     public void verifyGetUserById() {
@@ -34,7 +27,7 @@ public class GetUsersTest {
     public void verifyGetUsers() {
         Response res = users.getUsers();
         AllureManager.attachResponse(res);
-        res.then().log().body()
+        res.then()
                 .statusCode(HttpStatus.SC_OK)
                 .assertThat()
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(SchemaPath.USERS_SCHEMA.getPath()));
