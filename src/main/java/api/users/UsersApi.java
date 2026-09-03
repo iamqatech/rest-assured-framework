@@ -27,7 +27,6 @@ public class UsersApi {
                 .get("/users");
     }
 
-
     public Response createUser(User user) {
 
         return given().baseUri(baseUrl).body(user)
